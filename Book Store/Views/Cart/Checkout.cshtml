@@ -1,0 +1,95 @@
+﻿@model Book_Store.ViewModel.CheckoutViewModel
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+@using (@Html.BeginForm())
+{
+<div class="col-md-6">
+    <div class="form-group">
+        @Html.LabelFor(k => k.CustomerName)
+        @Html.TextBoxFor(k => k.CustomerName, new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(k => k.PhoneNo)
+        @Html.TextBoxFor(k => k.PhoneNo, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(k => k.ShippingAddress)
+        @Html.TextBoxFor(k => k.ShippingAddress, new { @class = "form-control" })
+    </div>
+</div>
+<div class="col-md-6">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().BookImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().BookPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().BookWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().BookQuantity)
+            </th>
+
+            <th>@Html.DisplayNameFor(model => model.CartItemsModel.FirstOrDefault().SubTotal)</th>
+
+        </tr>
+
+        @foreach (var item in Model.CartItemsModel)
+    {
+            <tr>
+                <td>
+                    <img src="~/uploads/@item.BookImageUrl" height="40" />                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+
+            </tr>
+    }
+        <tfoot>
+            <tr>
+                <th colspan="5" align="right">Sub Total</th>
+                <th>@ViewData["SubTotal"]</th>
+
+            </tr>
+            <tr>
+                <th colspan="5" align="right">Total Weight</th>
+                <th>@ViewData["TotalWeight"]</th>
+            </tr>
+            <tr>
+                <th colspan="5" align="right"> Total Shipping Charges</th>
+                <th>@ViewData["ShippingCharges"]</th>
+            </tr>
+            <tr>
+                <th colspan="5" align="right">Net Total</th>
+                <th>@ViewData["NetTotal"]</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+    <input type="submit" value="Confirm Purchase" class="btn btn-block btn-success" />
+
+}

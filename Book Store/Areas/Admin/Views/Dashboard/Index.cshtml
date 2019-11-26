@@ -1,0 +1,35 @@
+﻿@model Book_Store.Areas.Admin.Models.DashboardViewModel
+
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+<div class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <div class="panel-title">@Model.TotalOrders</div>
+        </div>
+        <div class="panel-footer">Total Orders</div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <div class="panel-title">@Model.TotalSales</div>
+        </div>
+        <div class="panel-footer">Total Sales</div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <div class="panel-title">@Model.MostOrderdBook</div>
+        </div>
+        <div class="panel-footer">Most Ordered Book</div>
+    </div>
+</div>

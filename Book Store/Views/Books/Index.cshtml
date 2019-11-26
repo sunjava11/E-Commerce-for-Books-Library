@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Book_Store.Models.Book>
+@{
+    ViewBag.Title = "Books";
+    ViewData.Add("controllerName", "Books");
+    ViewData.Add("actionName", "Index");
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        @Html.Partial("~/Views/Shared/BookTemplatePartial.cshtml",item,ViewData)
+    </div>
+}
+
+
+

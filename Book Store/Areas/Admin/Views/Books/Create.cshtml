@@ -1,0 +1,112 @@
+﻿@model Book_Store.Models.Book
+
+@{
+    ViewBag.Title = "Create Book";
+}
+
+<h2>Create Book</h2>
+
+
+@using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Authorname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Authorname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Authorname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Publishdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Publishdate, new { @class = "form-control dp" })
+                @Html.ValidationMessageFor(model => model.Publishdate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookCategoryId, "BookCategoryId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BookCategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.BookCategoryId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookImageUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="BookImageUrl" id="BookImageUrl" />
+                @*@Html.EditorFor(model => model.BookImageUrl)
+                @Html.ValidationMessageFor(model => model.BookImageUrl)*@
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Rating, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.Rating)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Weight, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Weight, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Weight)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Createdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Createdate)
+                @Html.ValidationMessageFor(model => model.Createdate)
+            </div>
+        </div>*@
+        
+        @Html.HiddenFor(model => model.Createdate, new {Value = DateTime.Now.ToString("dd-MMM-yy") })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new {@class="btn btn-warning" })
+</div>
+
+@section Scripts {
+    <script>
+        $(".dp").datepicker({dateFormat:"yy-mm-dd"});
+     </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

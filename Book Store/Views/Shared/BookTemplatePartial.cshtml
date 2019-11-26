@@ -1,0 +1,21 @@
+﻿@model Book_Store.Models.Book
+
+<div class="panel">
+    <div class="panel-body">
+        <img src="~/Uploads/@Model.BookImageUrl" class="thumbnail" />
+    </div>
+    <div class="panel-footer">
+        @Model.Name <br />
+        Author: @Model.Authorname
+        <br />
+        @if(ViewData["catId"]!=null)
+        {
+            @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { bookId = @Model.Id, requestedAction =ViewData["actionName"], requestedController = ViewData["controllerName"], catId=ViewData["catId"] }, new { @class = "btn btn-success" })    
+        }
+        else
+        {
+            @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { bookId = @Model.Id, requestedAction =ViewData["actionName"], requestedController = ViewData["controllerName"] }, new { @class = "btn btn-success" })
+        }
+        
+    </div>
+</div>

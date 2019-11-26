@@ -1,0 +1,20 @@
+﻿@{
+    Book_Store.Helpers.UserHelper userHelper = new Book_Store.Helpers.UserHelper();
+}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="@Url.Action("ViewCart","Cart")"><i class="fa fa-cart-plus"></i> <span class="label label-danger">@Session["CartItemCount"]</span></a></li>
+        
+        @if(userHelper.IsUserLogin()==false)
+        {
+            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account")</li>    
+        }
+        else
+        {
+            <li><a href="#">@userHelper.GetLoginUsername()</a></li>
+            <li>@Html.ActionLink("Log out", "Logout", "Account")</li>    
+        }
+        
+
+    </ul>
+
